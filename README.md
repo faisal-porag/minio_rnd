@@ -1,5 +1,8 @@
 # Initialize MinIO Client object instructions
 
+#### MINIO CLIENT 
+MinIO Client (mc) provides a modern alternative to UNIX commands like ls, cat, cp, mirror, diff etc. It supports filesystems and Amazon S3 compatible cloud storage service (AWS Signature v2 and v4).
+
  The MinIO Go Client SDK provides simple APIs to access any Amazon S3 compatible object storage.
 This quickstart guide will show you how to install the MinIO client SDK, 
 connect to MinIO, and provide a walk-through for a simple file uploader. 
