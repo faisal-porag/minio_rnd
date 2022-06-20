@@ -36,13 +36,25 @@ func main() {
 	//fmt.Println("Successfully created poragbucket.")
 
 	// TODO List Of Buckets
-	buckets, err := minioClient.ListBuckets(context.Background())
+	//buckets, err := minioClient.ListBuckets(context.Background())
+	//if err != nil {
+	//	fmt.Println(err)
+	//	return
+	//}
+	//for _, bucket := range buckets {
+	//	fmt.Println(bucket)
+	//}
+
+	// TODO FIND BUCKET BY BUCKET NAME
+	found, err := minioClient.BucketExists(context.Background(), "poragbucket")
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
-	for _, bucket := range buckets {
-		fmt.Println(bucket)
+	if found {
+		fmt.Println("Bucket found!")
+	} else {
+		fmt.Println("Bucket not found!")
 	}
 
 }
