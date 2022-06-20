@@ -65,3 +65,23 @@ func main() {
 	}
 
 }
+func CreateNewBucket(minioClient *minio.Client, bucketName, location string) bool {
+	// Make a new bucket.
+	ctx := context.Background()
+	err := minioClient.MakeBucket(ctx, bucketName, minio.MakeBucketOptions{Region: location, ObjectLocking: true})
+	// err = minioClient.MakeBucket(bucketName, location)
+	if err != nil {
+		// Check to see if we already own this bucket (which happens if you run this twice)
+		exists, errBucketExists := minioClient.BucketExists(ctx, bucketName)
+		log.Info().Msgf("bucket exists: %+v", exists)
+		if errBucketExists == nil && exists {
+			log.Info().Msgf("We already own %+v\n", bucketName)
+		} else {
+			log.Error().Err(err).Msgf("make bucket error : %s", err)
+			return false
+		}
+	} else {
+		log.Info().Msgf("Successfully created %s\n", bucketName)
+	}
+	return true
+}
