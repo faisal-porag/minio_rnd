@@ -45,6 +45,13 @@ func main() {
 	//	fmt.Println(bucket)
 	//}
 
+	// TODO REMOVE BUCKET BY NAME
+	//err = minioClient.RemoveBucket(context.Background(), "poragbucket")
+	//if err != nil {
+	//	fmt.Println(err)
+	//	return
+	//}
+
 	// TODO FIND BUCKET BY BUCKET NAME
 	found, err := minioClient.BucketExists(context.Background(), "poragbucket")
 	if err != nil {
