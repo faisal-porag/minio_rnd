@@ -27,13 +27,7 @@ func main() {
 	log.Info().Msgf("Result: %#v\n", minioClient) // minioClient is now setup
 
 	// TODO BUCKET CREATION
-	// Create a bucket at region 'us-east-1' with object locking enabled.
-	//err = minioClient.MakeBucket(context.Background(), "poragbucket", minio.MakeBucketOptions{Region: "us-east-1", ObjectLocking: true})
-	//if err != nil {
-	//	fmt.Println(err)
-	//	return
-	//}
-	//fmt.Println("Successfully created poragbucket.")
+	//_ = CreateNewBucket(minioClient, "poragbucket", "us-east-1")
 
 	// TODO List Of Buckets
 	//buckets, err := minioClient.ListBuckets(context.Background())
