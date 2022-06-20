@@ -1,6 +1,8 @@
 package main
 
 import (
+	"context"
+	"fmt"
 	"github.com/minio/minio-go/v7"
 	"github.com/minio/minio-go/v7/pkg/credentials"
 	"github.com/rs/zerolog/log"
@@ -23,4 +25,13 @@ func main() {
 
 	log.Info().Msg("Successfully initiated.")
 	log.Info().Msgf("Result: %#v\n", minioClient) // minioClient is now setup
+
+	// BUCKET CREATION
+	// Create a bucket at region 'us-east-1' with object locking enabled.
+	err = minioClient.MakeBucket(context.Background(), "poragbucket", minio.MakeBucketOptions{Region: "us-east-1", ObjectLocking: true})
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println("Successfully created poragbucket.")
 }
