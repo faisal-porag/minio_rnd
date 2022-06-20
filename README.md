@@ -55,6 +55,8 @@ func main() {
 * ListObjects
 * ListIncompleteUploads
 
+
+#### File upload [FPutObject]
 FPutObject(ctx context.Context, bucketName, objectName, filePath, opts PutObjectOptions) (info UploadInfo, err error)
 Uploads contents from a file to objectName.
 
