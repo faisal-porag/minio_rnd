@@ -79,3 +79,17 @@ func CreateNewBucket(minioClient *minio.Client, bucketName, location string) boo
 	}
 	return true
 }
+
+func UploadIntoBucket(minioClient *minio.Client, bucketName, objName, filePath string) {
+	bucketName = "poragbucket"
+	objName = "my-objectname"
+	filePath = "my-filename.csv"
+	uploadInfo, err := minioClient.FPutObject(context.Background(), bucketName, objName, filePath, minio.PutObjectOptions{
+		ContentType: "application/csv",
+	})
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println("Successfully uploaded object: ", uploadInfo)
+}

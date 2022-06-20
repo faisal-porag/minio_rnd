@@ -54,3 +54,36 @@ func main() {
 * RemoveBucket
 * ListObjects
 * ListIncompleteUploads
+
+FPutObject(ctx context.Context, bucketName, objectName, filePath, opts PutObjectOptions) (info UploadInfo, err error)
+Uploads contents from a file to objectName.
+
+FPutObject uploads objects that are less than 128MiB in a single PUT operation. For objects that are greater than the 128MiB in size, FPutObject seamlessly uploads the object in chunks of 128MiB or more depending on the actual file size. The max upload size for an object is 5TB.
+
+#### Parameters
+Param | Type             | Description
+------ |------------------| ---------
+ctx | context.Context  | Custom context for timeout/cancellation of the call
+bucketName | string | Name of the bucket
+objectName | string | Name of the object
+filePath | string | Path to file to be uploaded
+opts | minio.PutObjectOptions | Pointer to struct that allows user to set optional custom metadata, content-type, content-encoding, content-disposition, content-language and cache-control headers, pass encryption module for encrypting objects, and optionally configure number of threads for multipart put operation.
+
+#### minio.UploadInfo
+Field | Type             | Description
+------ |------------------| ---------
+info.ETag | string | The ETag of the new object
+info.VersionID | string | The version identifyer of the new object
+
+
+#### Example
+```go
+uploadInfo, err := minioClient.FPutObject(context.Background(), "my-bucketname", "my-objectname", "my-filename.csv", minio.PutObjectOptions{
+    ContentType: "application/csv",
+});
+if err != nil {
+    fmt.Println(err)
+    return
+}
+fmt.Println("Successfully uploaded object: ", uploadInfo)
+```
