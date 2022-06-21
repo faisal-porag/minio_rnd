@@ -10,4 +10,10 @@ encode_base64:
 encode_v1:
 	go run image_convert/encode_version1.go
 
+build:
+	go build main.go
+
+clean:
+	rm -r bin
+
 
