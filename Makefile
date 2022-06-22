@@ -15,5 +15,10 @@ build:
 
 clean:
 	rm -r bin
+	
+test:
+	echo "hello test"
+
+
 
 
